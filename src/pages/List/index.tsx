@@ -15,8 +15,10 @@ import UsersService from "../../services/users.service";
 import formatDate from "../../utils/formatDate";
 import EditUserModal from "../../Components/editUserModal";
 import CreateUserModal from "../../Components/createUserModal";
+import { AuthContext } from "../../contexts/UserContext/authContext";
 
 const List: React.FunctionComponent = () => {
+  const { token } = React.useContext(AuthContext);
   const [allUser, setAllUser] = useState<IUser[]>([]);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const List: React.FunctionComponent = () => {
 
   const deleteUser = async (id: string): Promise<void> => {
     try {
-      await UsersService.delete(id);
+      await UsersService.delete(id, token);
 
       toastMsg(ToastType.Success, "Deletado com sucesso!");
       const data = await UsersService.allUsers();

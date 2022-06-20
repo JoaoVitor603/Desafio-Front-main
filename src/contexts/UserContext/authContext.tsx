@@ -27,18 +27,16 @@ export const AuthProvider = ({ children }: IProvider): React.ReactElement => {
     try {
       setToken(resToken);
       setUserAdm({
-        id: resUser.user.id,
-        admin: resUser.user.permission ? "Administrador" : "Coloborador",
+        id: resUser.id,
+        admin: resUser.permission ? "Administrador" : "Coloborador",
       });
       localStorage.setItem("userToken", resToken);
       localStorage.setItem(
         "userPermission",
-        resUser.user.permission ? "Administrador" : "Coloborador"
+        resUser.permission ? "Administrador" : "Coloborador"
       );
-      //  {u.admin ? "Administrador" : "Coloborador"}
-      localStorage.setItem("userID", resUser.user.id);
 
-      // localStorage.setItem("UserPermission", resUser.admin)
+      localStorage.setItem("userID", resUser.id);
     } catch (error) {
       toastMsg(ToastType.Error, (error as Error).message);
     }

@@ -25,6 +25,7 @@ class UsersService {
   }
 
   static async create(
+    token: string,
     name: string,
     cpf: string,
     password: string,
@@ -32,6 +33,7 @@ class UsersService {
     admin: boolean,
     observation?: string
   ): Promise<void> {
+    HttpClient.api.defaults.headers.common.Authorization = `Bearer ${token}`;
     const obj = {
       name,
       cpf,
@@ -46,10 +48,12 @@ class UsersService {
   }
 
   static async update(
+    token: string,
     id: string,
     observation?: string,
     admin?: boolean
   ): Promise<void> {
+    HttpClient.api.defaults.headers.common.Authorization = `Bearer ${token}`;
     const obj = {
       observation,
       admin,
@@ -59,7 +63,8 @@ class UsersService {
     return data;
   }
 
-  static async delete(id: string): Promise<string> {
+  static async delete(id: string, token: string): Promise<string> {
+    HttpClient.api.defaults.headers.common.Authorization = `Bearer ${token}`;
     const { statusText } = await HttpClient.api.delete(`/users/${id}`);
     return statusText;
   }

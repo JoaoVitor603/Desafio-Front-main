@@ -1,6 +1,4 @@
 export interface IUserResponse {
-  user: {
-    id: string;
-    permission: boolean;
-  };
+  id: string;
+  permission: boolean;
 }

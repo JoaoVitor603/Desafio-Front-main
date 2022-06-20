@@ -7,6 +7,7 @@ import { AxiosError } from "axios";
 import { IUser } from "../../interfaces";
 import UsersService from "../../services/users.service";
 import toastMsg, { ToastType } from "../../utils/toastMsg";
+import { AuthContext } from "../../contexts/UserContext/authContext";
 
 interface Props {
   user: IUser;
@@ -31,7 +32,7 @@ export default function EditUserModal({
     observation: user.observation,
     admin: user.admin,
   });
-
+  const { token } = React.useContext(AuthContext);
   const fetchUsers = async (): Promise<void> => {
     try {
       const data = await UsersService.allUsers();
@@ -51,7 +52,7 @@ export default function EditUserModal({
   ): Promise<void> => {
     event.preventDefault();
     try {
-      await UsersService.update(user.id, observation, admin);
+      await UsersService.update(token, user.id, observation, admin);
 
       toastMsg(ToastType.Success, "Atualizado com sucesso! ");
       fetchUsers();

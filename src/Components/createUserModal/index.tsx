@@ -7,11 +7,11 @@ import { AxiosError } from "axios";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-// import IMaskInput from "react-imask";
 import InputMask from "react-input-mask";
 import { IUser } from "../../interfaces";
 import UsersService from "../../services/users.service";
 import toastMsg, { ToastType } from "../../utils/toastMsg";
+import { AuthContext } from "../../contexts/UserContext/authContext";
 
 interface Props {
   setUsers: Dispatch<SetStateAction<IUser[]>>;
@@ -32,6 +32,7 @@ export default function CreateUserModal({
     observation: "",
   });
 
+  const { token } = React.useContext(AuthContext);
   const fetchUsers = async (): Promise<void> => {
     try {
       const data = await UsersService.allUsers();
@@ -52,6 +53,7 @@ export default function CreateUserModal({
     event.preventDefault();
     try {
       await UsersService.create(
+        token,
         name,
         cpf,
         password,

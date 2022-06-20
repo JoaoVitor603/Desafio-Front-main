@@ -29,12 +29,12 @@ const Home: React.FunctionComponent = () => {
     c.preventDefault();
     try {
       const data = await UsersService.signIn(id, password);
-      // const user = {
-      // //   data.user.id,
-      // //   data.user.admin,
-      // // };
-      // // console.log(data);
-      // //   handleLogin(data.token,   );
+      const userRes = {
+        id: data.user.id,
+        permission: data.user.permission,
+      };
+      console.log(data);
+      handleLogin(data.token, userRes);
 
       if (data.token) {
         HttpClient.api.defaults.headers.common.Authorization = `Bearer ${data.token}`;
