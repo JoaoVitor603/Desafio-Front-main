@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
+import TextField from "@material-ui/core/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -15,17 +15,18 @@ import UsersService from "../../services/users.service";
 import HttpClient from "../../services/httpClient";
 import toastMsg, { ToastType } from "../../utils/toastMsg";
 import { AuthContext } from "../../contexts/UserContext/authContext";
-import { IUserResponse } from "../../interfaces/IUserResponse";
+import MaskField from "../../Components/MaskField";
 
 const Home: React.FunctionComponent = () => {
   const theme = createTheme();
   const [id, setCpf] = useState<string>("");
   const [password, setPassoword] = useState<string>("");
   const navigate = useNavigate();
-  const { handleLogin, signed } = useContext(AuthContext);
+  const { handleLogin } = useContext(AuthContext);
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const handleSubmit = async (c: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    c: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     c.preventDefault();
     try {
       const data = await UsersService.signIn(id, password);
@@ -33,7 +34,7 @@ const Home: React.FunctionComponent = () => {
         id: data.user.id,
         permission: data.user.permission,
       };
-      console.log(data);
+
       handleLogin(data.token, userRes);
 
       if (data.token) {
@@ -76,17 +77,7 @@ const Home: React.FunctionComponent = () => {
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="login"
-                  required
-                  fullWidth
-                  id="Digite o CPF"
-                  label="Digite o CPF"
-                  autoFocus
-                  value={id}
-                  onChange={(c) => setCpf(c.target.value)}
-                />
+                <MaskField user={id} setCpf={setCpf} />
               </Grid>
 
               <Grid item xs={12}>

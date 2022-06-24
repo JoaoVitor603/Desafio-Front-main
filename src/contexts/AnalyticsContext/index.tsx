@@ -1,14 +1,18 @@
-import React, { useEffect, useContext } from 'react';
-import mixpanel, { Dict } from 'mixpanel-browser';
-import { IAnalyticsContext, IAnalyticsProvider } from './interfaces';
+import React, { useEffect, useContext } from "react";
+import mixpanel, { Dict } from "mixpanel-browser";
+import { IAnalyticsContext, IAnalyticsProvider } from "./interfaces";
 
-const AnalyticsContext = React.createContext<IAnalyticsContext>({} as IAnalyticsContext);
+const AnalyticsContext = React.createContext<IAnalyticsContext>(
+  {} as IAnalyticsContext
+);
 
 export function useAnalytics(): IAnalyticsContext {
   return useContext(AnalyticsContext);
 }
 
-export function AnalyticsProvider({ children }: IAnalyticsProvider): React.ReactElement {
+export function AnalyticsProvider({
+  children,
+}: IAnalyticsProvider): React.ReactElement {
   function trackEvent(eventName: string, properties: Dict): void {
     mixpanel.track(eventName, properties);
   }
@@ -31,5 +35,9 @@ export function AnalyticsProvider({ children }: IAnalyticsProvider): React.React
     trackEvent,
   };
 
-  return <AnalyticsContext.Provider value={value}>{children}</AnalyticsContext.Provider>;
+  return (
+    <AnalyticsContext.Provider value={value}>
+      {children}
+    </AnalyticsContext.Provider>
+  );
 }

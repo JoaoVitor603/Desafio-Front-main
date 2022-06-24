@@ -1,18 +1,26 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
-import Error from "../pages/Error";
 import List from "../pages/List";
 
-// components;
+const PrivateRoute = ({ children }): React.ReactElement => {
+  const token = localStorage.getItem("userToken");
+
+  return token ? children : <Navigate to="/" />;
+};
 
 const Rotes: React.FunctionComponent = () => (
   <div>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Home" element={<List />} />
-      <Route path="/erro" element={<Error />} />
+      <Route
+        path="/Home"
+        element={
+          <PrivateRoute>
+            <List />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   </div>
 );

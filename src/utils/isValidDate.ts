@@ -1,4 +1,4 @@
-import { isValid, parse } from 'date-fns';
+import { isValid, parse } from "date-fns";
 
 /**
  * @description
@@ -12,7 +12,7 @@ import { isValid, parse } from 'date-fns';
 const isValidDate = (date: string): boolean => {
   if (!date) return false;
 
-  const newDate = parse(date, 'dd/MM/yyyy', new Date());
+  const newDate = parse(date, "dd/MM/yyyy", new Date());
 
   return isValid(newDate);
 };

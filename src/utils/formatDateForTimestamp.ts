@@ -8,7 +8,7 @@
  */
 
 const formatDateForTimestamp = (value: string): number => {
-  const date = value.replace(/(\d+[/])(\d+[/])/, '$2$1');
+  const date = value.replace(/(\d+[/])(\d+[/])/, "$2$1");
   const dateTimestamp = new Date(date).getTime();
 
   return dateTimestamp;

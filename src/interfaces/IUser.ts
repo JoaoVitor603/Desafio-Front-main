@@ -1,6 +1,6 @@
 export interface IUser {
   name: string;
-  cpf: string;
+  cpf?: string;
   password: string;
   birthdate: string;
   observation: string;

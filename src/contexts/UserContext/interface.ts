@@ -4,6 +4,7 @@ export interface IauthContext {
   token: string;
   userAdm: IUsercontext;
   handleLogin: (resToken: string, resUser: IUserResponse) => void;
+  handleSignOut: () => void;
   signed: boolean;
 }
 

@@ -7,6 +7,7 @@
  * @return {String} 1121
  */
 
-const onlyNumbers = (input: string | number): string => String(input).replace(/[^\d]/g, '');
+const onlyNumbers = (input: string | number): string =>
+  String(input).replace(/[^\d]/g, "");
 
 export default onlyNumbers;

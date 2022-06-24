@@ -5,8 +5,8 @@
  */
 
 const getTokenStorage = (): string => {
-  const token = localStorage.getItem('TOKEN_KEY');
-  return token ? `Bearer ${token}` : '';
+  const token = localStorage.getItem("TOKEN_KEY");
+  return token ? `Bearer ${token}` : "";
 };
 
 export default getTokenStorage;

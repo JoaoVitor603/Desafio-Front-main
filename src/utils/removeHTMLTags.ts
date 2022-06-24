@@ -8,11 +8,11 @@
  */
 
 const removeHTMLTags = (value: string): string => {
-  if (!value) return '';
+  if (!value) return "";
 
   const regex = /(<([^>]+)>)/gi;
 
-  return value.replace(regex, '');
+  return value.replace(regex, "");
 };
 
 export default removeHTMLTags;

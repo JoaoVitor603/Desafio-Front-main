@@ -5,20 +5,20 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import DeleteIcon from "@mui/icons-material/Delete";
+
 import { useEffect, useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { IUser } from "../../interfaces";
 import "./style.scss";
-import toastMsg, { ToastType } from "../../utils/toastMsg";
-import UsersService from "../../services/users.service";
+
 import formatDate from "../../utils/formatDate";
 import EditUserModal from "../../Components/editUserModal";
 import CreateUserModal from "../../Components/createUserModal";
 import { AuthContext } from "../../contexts/UserContext/authContext";
+import DeleteUserModal from "../../Components/deleteUserModal";
 
 const List: React.FunctionComponent = () => {
-  const { token } = React.useContext(AuthContext);
+  const { handleSignOut } = React.useContext(AuthContext);
   const [allUser, setAllUser] = useState<IUser[]>([]);
 
   useEffect(() => {
@@ -27,26 +27,20 @@ const List: React.FunctionComponent = () => {
       .then((resposta) => setAllUser(resposta.data));
   }, []);
 
-  const deleteUser = async (id: string): Promise<void> => {
-    try {
-      await UsersService.delete(id, token);
-
-      toastMsg(ToastType.Success, "Deletado com sucesso!");
-      const data = await UsersService.allUsers();
-      setAllUser(data);
-    } catch (error) {
-      toastMsg(
-        ToastType.Error,
-        (error as AxiosError).response?.statusText || "Internal Server Error!"
-      );
-    }
-  };
-
   return (
     <Box className="screen" component="span">
       <Typography variant="h1" sx={{ fontSize: 40 }} gutterBottom>
         Lista de Funcionários
       </Typography>
+      <Button
+        color="error"
+        variant="outlined"
+        size="medium"
+        onClick={handleSignOut}
+      >
+        {" "}
+        Sair
+      </Button>
       <CreateUserModal setUsers={setAllUser} />
       {allUser.map((u: IUser) => (
         <Card className="user_card card_usuario" sx={{ minWidth: 400 }}>
@@ -65,15 +59,15 @@ const List: React.FunctionComponent = () => {
           </CardContent>
           <CardActions>
             <EditUserModal user={u} setUsers={setAllUser} />
-
-            <Button
+            <DeleteUserModal user={u.id} setUsers={setAllUser} />
+            {/* <Button
               variant="outlined"
               size="medium"
               startIcon={<DeleteIcon />}
               onClick={() => deleteUser(u.id)}
-            >
-              Delete
-            </Button>
+            > */}
+
+            {/* </Button> */}
           </CardActions>
         </Card>
       ))}
