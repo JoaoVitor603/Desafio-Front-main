@@ -9,12 +9,12 @@
  */
 
 const formatMaskHTML = (value: string, mask: string): string => {
-  if (!value || !mask) return "";
+  if (!value || !mask) return '';
 
   let i = 0;
   const v = value.toString();
 
-  return mask.replace(/#/g, () => v[i++] || "");
+  return mask.replace(/#/g, () => v[i++] || '');
 };
 
 export default formatMaskHTML;

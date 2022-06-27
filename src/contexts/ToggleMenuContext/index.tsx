@@ -1,17 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
-import { IToggleMenuContext, IToggleMenuProvider } from "./interfaces";
+import React, { useState, useContext, useEffect } from 'react';
+import { IToggleMenuContext, IToggleMenuProvider } from './interfaces';
 
-const ToggleMenuContext = React.createContext<IToggleMenuContext>(
-  {} as IToggleMenuContext
-);
+const ToggleMenuContext = React.createContext<IToggleMenuContext>({} as IToggleMenuContext);
 
 export function useToggleMenu(): IToggleMenuContext {
   return useContext(ToggleMenuContext);
 }
 
-export function ToggleMenuProvider({
-  children,
-}: IToggleMenuProvider): React.ReactElement {
+export function ToggleMenuProvider({ children }: IToggleMenuProvider): React.ReactElement {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   useEffect(() => {
@@ -24,9 +20,9 @@ export function ToggleMenuProvider({
     }
     changeWindowSize();
 
-    window.addEventListener("resize", changeWindowSize);
+    window.addEventListener('resize', changeWindowSize);
     return () => {
-      window.removeEventListener("resize", changeWindowSize);
+      window.removeEventListener('resize', changeWindowSize);
     };
   }, []);
 
@@ -40,9 +36,5 @@ export function ToggleMenuProvider({
     updateToggleMenu,
   };
 
-  return (
-    <ToggleMenuContext.Provider value={value}>
-      {children}
-    </ToggleMenuContext.Provider>
-  );
+  return <ToggleMenuContext.Provider value={value}>{children}</ToggleMenuContext.Provider>;
 }

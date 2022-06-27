@@ -1,4 +1,4 @@
-import { IUserResponse } from "../../interfaces/IUserResponse";
+import { IUserResponse } from '../../interfaces/IUserResponse';
 
 export interface IauthContext {
   token: string;

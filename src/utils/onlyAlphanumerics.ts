@@ -9,11 +9,11 @@
  */
 
 const onlyAlphaNumerics = (value: string, noSpace = false): string => {
-  if (!value) return "";
+  if (!value) return '';
 
-  if (noSpace) return value.replace(/[^a-z A-Z 0-9]+/g, "").trim();
+  if (noSpace) return value.replace(/[^a-z A-Z 0-9]+/g, '').trim();
 
-  return value.replace(/[^a-z A-Z 0-9]+/g, "");
+  return value.replace(/[^a-z A-Z 0-9]+/g, '');
 };
 
 export default onlyAlphaNumerics;

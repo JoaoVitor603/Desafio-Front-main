@@ -1,6 +1,6 @@
-import HttpClient from "./httpClient";
-import { IUser } from "../interfaces";
-import { IUserResponse } from "../interfaces/IUserResponse";
+import HttpClient from './httpClient';
+import { IUser } from '../interfaces';
+import { IUserResponse } from '../interfaces/IUserResponse';
 
 interface LoginResponse {
   token: string;
@@ -9,13 +9,13 @@ interface LoginResponse {
 
 class UsersService {
   static async signIn(cpf: string, password: string): Promise<LoginResponse> {
-    const { data } = await HttpClient.api.post("/sessions", { cpf, password });
+    const { data } = await HttpClient.api.post('/sessions', { cpf, password });
 
     return data;
   }
 
   static async allUsers(): Promise<IUser[]> {
-    const { data } = await HttpClient.api.get<[]>("/users");
+    const { data } = await HttpClient.api.get<[]>('/users');
     return data;
   }
 
@@ -43,16 +43,11 @@ class UsersService {
       observation,
     };
 
-    const { data } = await HttpClient.api.post("/users/", obj);
+    const { data } = await HttpClient.api.post('/users/', obj);
     return data;
   }
 
-  static async update(
-    token: string,
-    id: string,
-    observation?: string,
-    admin?: boolean
-  ): Promise<void> {
+  static async update(token: string, id: string, observation?: string, admin?: boolean): Promise<void> {
     HttpClient.api.defaults.headers.common.Authorization = `Bearer ${token}`;
     const obj = {
       observation,

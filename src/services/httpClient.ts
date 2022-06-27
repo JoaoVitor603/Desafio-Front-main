@@ -1,14 +1,14 @@
-import axios from "axios";
-import getTokenStorage from "../utils/getTokenStorage";
+import axios from 'axios';
+import getTokenStorage from '../utils/getTokenStorage';
 
 const defaultHeaders = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
 };
 
 const axiosConfig = axios.create({
-  baseURL: "http://localhost:3333/",
+  baseURL: 'http://localhost:3333/',
   timeout: 30000,
   headers: defaultHeaders,
 });

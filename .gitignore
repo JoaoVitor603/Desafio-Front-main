@@ -2,7 +2,9 @@
 /node_modules
 /.pnp
 .pnp.js
-
+    .prettierignore
+        .prettierrc
+        .stylelintrc
 # testing
 /coverage
 

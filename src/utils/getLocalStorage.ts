@@ -7,9 +7,9 @@
  * @return {String} eyJhbGciOiJIUzI1NiIsInR
  */
 
-const getLocalStorage = (key = ""): string => {
-  const value = localStorage.getItem(key) || "";
-  return value || "";
+const getLocalStorage = (key = ''): string => {
+  const value = localStorage.getItem(key) || '';
+  return value || '';
 };
 
 export default getLocalStorage;

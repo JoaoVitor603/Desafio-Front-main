@@ -1,11 +1,11 @@
-import React from "react";
-import { toast } from "react-toastify";
+import React from 'react';
+import { toast } from 'react-toastify';
 
 export enum ToastType {
-  Success = "success",
-  Info = "info",
-  Warning = "warning",
-  Error = "error",
+  Success = 'success',
+  Info = 'info',
+  Warning = 'warning',
+  Error = 'error',
 }
 
 /**
@@ -19,7 +19,7 @@ export enum ToastType {
  */
 
 const toastMsg = (type: ToastType, text: string): React.ReactText => {
-  if (!text) return "";
+  if (!text) return '';
 
   switch (type) {
     case ToastType.Success:

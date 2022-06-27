@@ -1,5 +1,5 @@
-import { parseISO } from "date-fns";
-import { format, zonedTimeToUtc } from "date-fns-tz";
+import { parseISO } from 'date-fns';
+import { format, zonedTimeToUtc } from 'date-fns-tz';
 
 /**
  * @description
@@ -11,11 +11,11 @@ import { format, zonedTimeToUtc } from "date-fns-tz";
  */
 
 const formatDate = (date: string): string => {
-  if (!date) return "";
+  if (!date) return '';
 
   const convertDateToISO = parseISO(date);
-  const timezone = zonedTimeToUtc(convertDateToISO, "America/Sao_Paulo");
-  const newDateFormatted = format(timezone, "dd/MM/yyyy");
+  const timezone = zonedTimeToUtc(convertDateToISO, 'America/Sao_Paulo');
+  const newDateFormatted = format(timezone, 'dd/MM/yyyy');
   return newDateFormatted;
 };
 

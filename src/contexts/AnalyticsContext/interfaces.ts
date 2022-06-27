@@ -1,5 +1,5 @@
-import React from "react";
-import { Dict } from "mixpanel-browser";
+import React from 'react';
+import { Dict } from 'mixpanel-browser';
 
 export interface IAnalyticsContext {
   trackEvent: (eventName: string, properties: Dict) => void;

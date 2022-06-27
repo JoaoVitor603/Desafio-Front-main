@@ -7,7 +7,6 @@
  * @return {Boolean} true or false
  */
 
-const checkObjectIsEmpty = (obj: unknown): boolean =>
-  JSON.stringify(obj) === "{}";
+const checkObjectIsEmpty = (obj: unknown): boolean => JSON.stringify(obj) === '{}';
 
 export default checkObjectIsEmpty;

@@ -7,7 +7,6 @@
  * @return {Boolean} false
  */
 
-const checkIsNumeric = (value: unknown): boolean =>
-  /^-?\d+$/.test(String(value));
+const checkIsNumeric = (value: unknown): boolean => /^-?\d+$/.test(String(value));
 
 export default checkIsNumeric;

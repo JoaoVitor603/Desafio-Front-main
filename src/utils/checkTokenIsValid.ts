@@ -1,4 +1,4 @@
-import jwtDecode, { JwtPayload } from "jwt-decode";
+import jwtDecode, { JwtPayload } from 'jwt-decode';
 
 /**
  * @description
@@ -9,7 +9,7 @@ import jwtDecode, { JwtPayload } from "jwt-decode";
  * @return {Boolean} true or false
  */
 
-const checkTokenIsValid = (key = ""): boolean => {
+const checkTokenIsValid = (key = ''): boolean => {
   try {
     const token = localStorage.getItem(key);
 
