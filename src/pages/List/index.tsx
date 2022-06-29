@@ -50,7 +50,7 @@ const List: React.FunctionComponent = () => {
             <Typography variant="inherit"> {u.cpf}</Typography>
           </CardContent>
           <CardActions>
-            <EditUserModal user={u} setUsers={setAllUser} />
+            <EditUserModal key={u.id} user={u} setUsers={setAllUser} />
             <DeleteUserModal user={u.id} setUsers={setAllUser} />
           </CardActions>
         </Card>
