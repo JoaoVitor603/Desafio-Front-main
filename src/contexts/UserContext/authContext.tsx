@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: IProvider): React.ReactElement => {
       localStorage.setItem('userID', resUser.id);
       if (resToken) {
         HttpClient.api.defaults.headers.common.Authorization = `Bearer ${resToken}`;
-        navigate('/Home');
+        navigate('/List');
       }
     } catch (error) {
       toastMsg(ToastType.Error, (error as Error).message);

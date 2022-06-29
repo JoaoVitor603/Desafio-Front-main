@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
 import UsersService from '../../services/users.service';
 import HttpClient from '../../services/httpClient';
 import toastMsg, { ToastType } from '../../utils/toastMsg';
@@ -37,12 +36,12 @@ const Home: React.FunctionComponent = () => {
 
       if (data.token) {
         HttpClient.api.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-        navigate('/Home');
+        navigate('/List');
       }
 
       toastMsg(ToastType.Success, 'Logou com sucesso! ');
     } catch (error) {
-      toastMsg(ToastType.Error, (error as AxiosError).response?.statusText || 'Internal Server Error!');
+      toastMsg(ToastType.Error, error.response.data.message);
     }
   };
 

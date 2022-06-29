@@ -3,11 +3,11 @@ import { Box, Button, MenuItem, Modal, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import { AxiosError } from 'axios';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Grid from '@mui/material/Grid';
+import frLocale from 'date-fns/locale/fr';
 import { IUser } from '../../interfaces';
 import UsersService from '../../services/users.service';
 import toastMsg, { ToastType } from '../../utils/toastMsg';
@@ -40,7 +40,7 @@ export default function CreateUserModal({ setUsers }: Props): React.ReactElement
       setUsers(data);
       handleClose();
     } catch (error) {
-      toastMsg(ToastType.Error, (error as AxiosError).response?.statusText || 'Internal Server Error!');
+      toastMsg(ToastType.Error, error.response.data.message);
     }
   };
 
@@ -55,7 +55,7 @@ export default function CreateUserModal({ setUsers }: Props): React.ReactElement
       toastMsg(ToastType.Success, ' Cadastrado com sucesso! ');
       fetchUsers();
     } catch (error) {
-      toastMsg(ToastType.Error, (error as AxiosError).response?.statusText || 'Internal Server Error!');
+      toastMsg(ToastType.Error, error.response.data.message);
     }
   };
 
@@ -129,10 +129,9 @@ export default function CreateUserModal({ setUsers }: Props): React.ReactElement
             <Typography variant="body2" sx={{ fontSize: 16 }}>
               Data de nascimento
             </Typography>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={frLocale}>
               <DatePicker
                 value={User.birthdate}
-                inputFormat="dd/mm/yyyy"
                 onChange={(event) => {
                   setUser({ ...User, birthdate: event });
                 }}

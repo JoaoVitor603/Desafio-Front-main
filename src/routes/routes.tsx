@@ -14,7 +14,7 @@ const Rotes: React.FunctionComponent = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route
-        path="/Home"
+        path="/List"
         element={
           <PrivateRoute>
             <List />

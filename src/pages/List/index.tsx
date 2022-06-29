@@ -33,7 +33,7 @@ const List: React.FunctionComponent = () => {
       <Button color="error" variant="outlined" size="medium" onClick={handleSignOut} startIcon={<ArrowBackIcon />}>
         Sair
       </Button>
-      <CreateUserModal setUsers={setAllUser} />
+      <CreateUserModal key={Math.random()} setUsers={setAllUser} />
       {allUser.map((u: IUser) => (
         <Card className="user_card card_usuario" sx={{ minWidth: 400 }}>
           <CardContent>
